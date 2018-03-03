@@ -18,7 +18,7 @@ import java.util.List;
 
 
 /**
- *
+ * 拍卖属性
  * @author sunshixiong on 2018/01/30.
  */
 @RestController

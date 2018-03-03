@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- *
+ *用户模块
  * @author sunshixiong on 2018/01/30.
  */
 @Slf4j
@@ -29,6 +30,8 @@ public class CuitAdminController {
 
 	@Autowired
 	private CuitAdminService cuitAdminService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	/**
 	 * 增加一条数据
@@ -38,6 +41,7 @@ public class CuitAdminController {
 	@PostMapping
 	public CommonResult add(@Valid @RequestBody CuitAdmin entity, BindingResult results) {
  		BindingResultUtil.JudegResult(results);
+		entity.setPassWord(passwordEncoder.encode(entity.getPassWord()));
 		return cuitAdminService.add(entity);
 	}
 
@@ -58,6 +62,7 @@ public class CuitAdminController {
 	@PutMapping
 	public CommonResult update(@Valid @RequestBody CuitAdmin entity,BindingResult results){
 		BindingResultUtil.JudegResult(results);
+		entity.setPassWord(passwordEncoder.encode(entity.getPassWord()));
 		return cuitAdminService.update(entity);
 	}
 
@@ -73,6 +78,7 @@ public class CuitAdminController {
 	public Page<CuitAdmin> query(CuitAdmin cuitAdmin
 			, @PageableDefault(size = 20,sort = "name"
 			,direction = Sort.Direction.ASC)Pageable pageable) {
+		System.out.println("sunshfi");
 		return cuitAdminService.queryPage(cuitAdmin,pageable);
 	}
 

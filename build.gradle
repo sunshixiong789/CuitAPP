@@ -1,16 +1,12 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.RC2'
+		springBootVersion = '2.0.0.RELEASE'
 	}
 	repositories {
-
-		jcenter()
-		maven { url 'http://repo.spring.io/snapshot' }
-		maven { url 'http://repo.spring.io/milestone' }
+		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		/*classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'*/
 	}
 }
 
@@ -24,17 +20,8 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 	mavenCentral()
-	jcenter()
-	maven { url 'http://repo.spring.io/snapshot' }
-	maven { url 'http://repo.spring.io/milestone' }
 }
-/*dependencyManagement{
-	imports {
-		mavenBom 'io.spring.platform:platform-bom:Brussels-SR6'
-	}
-}*/
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -42,8 +29,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile ('com.github.tomakehurst:wiremock:2.14.0')
-	compile ('io.springfox:springfox-swagger2:2.8.0')
-	compile ('io.springfox:springfox-swagger-ui:2.8.0')
+	compile group: 'com.didispace', name: 'spring-boot-starter-swagger', version: '1.4.1.RELEASE'
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compileOnly('org.projectlombok:lombok:1.16.20')
 	compile ('mysql:mysql-connector-java:6.0.6')
