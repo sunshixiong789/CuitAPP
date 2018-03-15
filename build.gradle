@@ -28,6 +28,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile 'org.springframework.security.oauth:spring-security-oauth2:2.2.1.RELEASE'
 	compile ('com.github.tomakehurst:wiremock:2.14.0')
 	compile group: 'com.didispace', name: 'spring-boot-starter-swagger', version: '1.4.1.RELEASE'
 	runtime('org.springframework.boot:spring-boot-devtools')

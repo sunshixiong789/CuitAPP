@@ -34,7 +34,7 @@ public class ServiceImplUtil {
                 case 3:
                     jpaRepository.delete(entity);break;
                 default:
-                       throw  new Exception("没有这个方法");
+                       throw  new CommonException(HttpStatus.INTERNAL_SERVER_ERROR,"没有这个方法");
 
             }
             result = ResultUtil.success();

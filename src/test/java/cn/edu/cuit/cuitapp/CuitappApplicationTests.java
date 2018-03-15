@@ -11,6 +11,7 @@ public class CuitappApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("sunshixiong");
 	}
 
 }

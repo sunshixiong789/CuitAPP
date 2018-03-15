@@ -78,7 +78,6 @@ public class CuitAdminController {
 	public Page<CuitAdmin> query(CuitAdmin cuitAdmin
 			, @PageableDefault(size = 20,sort = "name"
 			,direction = Sort.Direction.ASC)Pageable pageable) {
-		System.out.println("sunshfi");
 		return cuitAdminService.queryPage(cuitAdmin,pageable);
 	}
 

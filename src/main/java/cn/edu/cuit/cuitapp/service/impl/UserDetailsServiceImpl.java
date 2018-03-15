@@ -34,9 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CuitAdmin user = cuitAdminDao.findByName(username);
-        String password = passwordEncoder.encode("123456");
-        log.info(username);
-        log.info(password);
-        return new User(username,password,true,true,true,true, AuthorityUtils.commaSeparatedStringToAuthorityList(user.getType()));
+        String password = user.getPassWord();
+        return new User(username,password,true,true,true,true, AuthorityUtils.commaSeparatedStringToAuthorityList(user.getType()+",ROLE_USER"));
     }
 }
