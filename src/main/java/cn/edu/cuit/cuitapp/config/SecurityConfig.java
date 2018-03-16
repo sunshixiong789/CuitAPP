@@ -1,6 +1,7 @@
 package cn.edu.cuit.cuitapp.config;
 
 
+import cn.edu.cuit.cuitapp.handler.CuitLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 /**
  * @author sunshixiong
@@ -27,11 +29,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                .loginPage("/login.html")
-                .loginProcessingUrl("/form/login")
+                .loginPage("/login")
+                .loginProcessingUrl("/form/login").failureUrl("/login?error=false")
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessHandler(new CuitLogoutSuccessHandler())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login.html").permitAll()
+                .antMatchers("/**/*.js","/**/*.css","/**/*.png","/**/*.jpg","/**/fonts/**").permitAll()
+                .antMatchers("/index/**","/assets/**","/static/**").permitAll()
+                .antMatchers("/login","/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -17,5 +17,8 @@ spring:
             client-secret: 123456
   thymeleaf:
     cache: false
+    encoding: UTF-8
+    prefix: classpath:/resources/
+    suffix: .html
 server:
   port: 8088
