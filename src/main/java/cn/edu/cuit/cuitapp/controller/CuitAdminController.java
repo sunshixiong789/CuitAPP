@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -70,10 +71,12 @@ public class CuitAdminController {
 	 * 查询数据并且分页｛
 	 * 前台这样传参数：?size=2&page=1&sort=id,desc
 	 * ｝
+	 *   @PermitAll 这个是注解方法配置spring security权限
 	 * @param cuitAdmin
 	 * @param pageable
 	 * @return
 	 */
+	@PermitAll
 	@GetMapping
 	public Page<CuitAdmin> query(CuitAdmin cuitAdmin
 			, @PageableDefault(size = 20,sort = "name"

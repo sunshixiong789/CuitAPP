@@ -1,4 +1,5 @@
 package cn.edu.cuit.cuitapp.controller;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class ViewController {
         return "index";
     }
     @GetMapping("/user/view")
-    public String user(Model model){
+    public String user(Model model, Authentication authentication){
         model.addAttribute("hello","sdfasdfasdfasfasf");
         return "user_info";
     }

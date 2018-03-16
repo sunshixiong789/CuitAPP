@@ -22,3 +22,8 @@ spring:
     suffix: .html
 server:
   port: 8088
+#配置登录是返回json还是重定向
+cuit:
+  security:
+    brower:
+      loginTpye: REDIRECT

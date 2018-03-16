@@ -1,9 +1,13 @@
 package cn.edu.cuit.cuitapp.config;
 
 
+import cn.edu.cuit.cuitapp.handler.BrowserAuthenctiationFailureHandler;
+import cn.edu.cuit.cuitapp.handler.BrowserAuthenticationSuccessHandler;
 import cn.edu.cuit.cuitapp.handler.CuitLogoutSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,9 +21,14 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true,jsr250Enabled = true,prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    @Autowired
+    BrowserAuthenticationSuccessHandler successHandler;
+    @Autowired
+    BrowserAuthenctiationFailureHandler failureHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -31,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/form/login").failureUrl("/login?error=false")
+                .successHandler(successHandler)
+                .failureHandler(failureHandler)
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessHandler(new CuitLogoutSuccessHandler())
                 .and()
