@@ -19,10 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author zhailiang
+ * 浏览器登录失败处理器
+ * @author sunshixiong
  *
  */
-@Component("imoocAuthenctiationFailureHandler")
+@Component("browserAuthenctiationFailureHandler")
 public class BrowserAuthenctiationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
 

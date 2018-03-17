@@ -1,9 +1,7 @@
 package cn.edu.cuit.cuitapp.config;
 
 
-import cn.edu.cuit.cuitapp.handler.BrowserAuthenctiationFailureHandler;
-import cn.edu.cuit.cuitapp.handler.BrowserAuthenticationSuccessHandler;
-import cn.edu.cuit.cuitapp.handler.CuitLogoutSuccessHandler;
+import cn.edu.cuit.cuitapp.handler.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,10 +23,14 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    @Autowired
+    /*@Autowired
     BrowserAuthenticationSuccessHandler successHandler;
     @Autowired
-    BrowserAuthenctiationFailureHandler failureHandler;
+    BrowserAuthenctiationFailureHandler failureHandler;*/
+    @Autowired
+    AppAuthenticationSuccessHandler successHandler;
+    @Autowired
+    AppAuthenctiationFailureHandler failureHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder(){

@@ -21,8 +21,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableAuthorizationServer
 public class CuitAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    /*@Autowired
+    PasswordEncoder passwordEncoder;*/
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -31,7 +31,7 @@ public class CuitAuthorizationServerConfig extends AuthorizationServerConfigurer
                 .inMemory()
                 .withClient("sunshixiong")
                 .authorizedGrantTypes(/*"password", */"authorization_code", "refresh_token", "implicit")//四种授权模式
-                .secret(passwordEncoder.encode("123456"))
+                .secret(/*passwordEncoder.encode("123456")*/"123456")
                 .scopes("read", "write", "trust")
                 .refreshTokenValiditySeconds(10000)
                 .authorizedGrantTypes();

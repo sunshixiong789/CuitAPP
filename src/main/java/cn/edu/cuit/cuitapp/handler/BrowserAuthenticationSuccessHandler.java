@@ -18,10 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author zhailiang
+ * 浏览器登录成功处理器
+ * @author sunshixiong
  *
  */
-@Component("imoocAuthenticationSuccessHandler")
+@Component("browserAuthenticationSuccessHandler")
 public class BrowserAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
 	@Autowired
