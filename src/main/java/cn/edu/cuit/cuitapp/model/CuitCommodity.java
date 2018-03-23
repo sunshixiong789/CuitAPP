@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 
 /**
@@ -21,7 +22,9 @@ public class CuitCommodity implements Serializable {
 	@GeneratedValue
    	private Integer id;
 	private String name;
+	private String picture;
 	private String insertTime;
 	private String status;
 	private Integer cuitKindId;
+	private Timestamp endTime;
 }

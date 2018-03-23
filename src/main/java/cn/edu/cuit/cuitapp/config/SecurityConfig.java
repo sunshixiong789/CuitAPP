@@ -23,14 +23,14 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    /*@Autowired
+    @Autowired
     BrowserAuthenticationSuccessHandler successHandler;
     @Autowired
-    BrowserAuthenctiationFailureHandler failureHandler;*/
-    @Autowired
+    BrowserAuthenctiationFailureHandler failureHandler;
+    /*@Autowired
     AppAuthenticationSuccessHandler successHandler;
     @Autowired
-    AppAuthenctiationFailureHandler failureHandler;
+    AppAuthenctiationFailureHandler failureHandler;*/
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/**/*.js","/**/*.css","/**/*.png","/**/*.jpg","/**/fonts/**").permitAll()
                 .antMatchers("/index/**","/assets/**","/static/**").permitAll()
-                .antMatchers("/login","/").permitAll()
+                .antMatchers("/login","/","/register","/logout").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

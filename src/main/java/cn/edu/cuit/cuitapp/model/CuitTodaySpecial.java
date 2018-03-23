@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 
 /**
@@ -21,7 +22,7 @@ public class CuitTodaySpecial implements Serializable {
 	@Id
 	@GeneratedValue
    	private Integer id;
-	private String startTime;
-	private String endTime;
+	private Timestamp startTime;
+	private Timestamp endTime;
 	private Integer cuitCommodityId;
 }

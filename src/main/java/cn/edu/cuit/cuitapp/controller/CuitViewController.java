@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/")
-public class ViewController {
+public class CuitViewController {
 
     @GetMapping
     public String index(Model model,@AuthenticationPrincipal UserDetails user){
@@ -42,4 +42,16 @@ public class ViewController {
     public String shop(Model model){
         return "shop";
     }
+
+    @GetMapping(value = "/register")
+    public String register(){
+
+        return "register";
+    }
+    @GetMapping(value = "/userinfo")
+    public String userinfo(){
+
+        return "user_info";
+    }
+
 }

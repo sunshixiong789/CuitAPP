@@ -20,6 +20,10 @@ spring:
     encoding: UTF-8
     prefix: classpath:/resources/
     suffix: .html
+  servlet:
+    multipart:
+      max-file-size: 20Mb
+      max-request-size: 100Mb
 server:
   port: 8088
 #配置登录是返回json还是重定向

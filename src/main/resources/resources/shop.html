@@ -30,46 +30,8 @@
     <![endif]-->
   </head>
   <body>
-
-  <div class="header-area">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-8">
-                  <div class="user-menu">
-                      <ul>
-                          <li><a href="#"><i class="fa fa-user"></i>我的账户</a></li>
-                          <li><a href="#"><i class="fa fa-heart"></i>收藏</a></li>
-                          <li><a href="cart.html"><i class="fa fa-user"></i>购物车</a></li>
-                          <li><a href="checkout.html"><i class="fa fa-user"></i>个人中心</a></li>
-                          <li><a href="#" data-th-text="${username}"><i class="fa fa-user"></i>未登录</a></li>
-                      </ul>
-                  </div>
-              </div>
-
-              <div class="col-md-4">
-                  <div class="header-right">
-                      <ul class="list-unstyled list-inline">
-                          <li class="dropdown dropdown-small">
-                              <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key"></span><span class="value">消息 </span><b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                  <li><a href="#">未读消息</a></li>
-                                  <li><a href="#">消息中心</a></li>
-                              </ul>
-                          </li>
-
-                          <li class="dropdown dropdown-small">
-                              <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key"></span><span class="value">收藏夹</span><b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                  <li><a href="#">收藏宝贝</a></li>
-                                  <li><a href="#">收藏商家</a></li>
-                              </ul>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> <!-- End header area -->
+  <!--头部内容-->
+  <div data-th-insert="~{header :: cuit_header}"></div>
 
   <div class="site-branding-area">
       <div class="container">
@@ -157,12 +119,12 @@
                     工艺品
 				</span>
                                 </li>
-                                <li data-id="f" class="limenu">
+                                <li data-id="g" class="limenu">
 				<span>
 					文玩收藏
 				</span>
                                 </li>
-                                <li data-id="f" class="limenu">
+                                <li data-id="h" class="limenu">
 				<span>
 					汽车
 				</span>

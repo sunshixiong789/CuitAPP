@@ -15,7 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Id;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
 
@@ -61,6 +63,7 @@ public class CuitAuctionAttributeServiceImpl implements CuitAuctionAttributeServ
     @Override
     public Page queryPage(CuitAuctionAttribute entity, Pageable pageable) {
         Example example = Example.of(entity);
+        Optional optional =  attributeDao.findById(1);
         return attributeDao.findAll(example,pageable);
     }
 }

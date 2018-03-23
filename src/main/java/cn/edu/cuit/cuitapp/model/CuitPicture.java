@@ -21,7 +21,7 @@ public class CuitPicture implements Serializable {
 	@GeneratedValue
    	private Integer id;
 	private String pictureName;
-	private String pictureUrl;
+	private String type;
 	private String pictureType;
 	private Integer cuitCommodityId;
 }

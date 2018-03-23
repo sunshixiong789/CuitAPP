@@ -19,7 +19,7 @@ public class TypeConstraintValidator implements ConstraintValidator<TypeValid,Ob
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        if("2".equals(value)||"1".equals(value)){
+        if("user".equals(value)||"admin".equals(value)){
             return true;
         }
         else {

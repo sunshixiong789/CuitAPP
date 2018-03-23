@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = TypeConstraintValidator.class)
 public @interface TypeValid {
-    String message() default "{必须是1或者2}";
+    String message() default "{必须是user或者admin}";
 
     Class<?>[] groups() default { };
 

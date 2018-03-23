@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.*;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
@@ -40,6 +41,9 @@ public class AppAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucc
     @Autowired
     private AuthorizationServerTokenServices authorizationServerTokenServices;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException {
@@ -56,7 +60,7 @@ public class AppAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucc
         ClientDetails clientDetails = clientDetailsService.loadClientByClientId(clientId);
         if (clientDetails == null) {
             throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR,"Client信息不存在");
-        }else if(!StringUtils.equals(clientDetails.getClientSecret(),clientSecret)){
+        }else if(!passwordEncoder.matches(clientSecret,clientDetails.getClientSecret())){
             throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR,"Client信息不匹配");
         }
         TokenRequest tokenRequest = new TokenRequest(MapUtils.EMPTY_SORTED_MAP,clientId,clientDetails.getScope(),"formlogin");
