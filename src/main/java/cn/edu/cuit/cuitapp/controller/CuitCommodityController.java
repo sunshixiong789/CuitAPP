@@ -1,5 +1,9 @@
 package cn.edu.cuit.cuitapp.controller;
 
+import cn.edu.cuit.cuitapp.dao.CuitCommodityDao;
+import cn.edu.cuit.cuitapp.model.CuitCommodity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -17,8 +21,11 @@ import java.util.List;
 @RequestMapping(value = "/cuitCommodity")
 public class CuitCommodityController {
 
+    @Autowired
+    private CuitCommodityDao cuitCommodityDao;
+
     @GetMapping
-    public List getAll(@PageableDefault(size = 20,sort = "name",direction = Sort.Direction.ASC)Pageable pageable){
-        return null;
+    public Page<CuitCommodity> getAll(@PageableDefault(size = 20,sort = "name",direction = Sort.Direction.ASC)Pageable pageable){
+        return cuitCommodityDao.findAll(pageable);
     }
 }

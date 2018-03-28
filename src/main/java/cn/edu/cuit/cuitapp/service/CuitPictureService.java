@@ -2,6 +2,9 @@ package cn.edu.cuit.cuitapp.service;
 
 import cn.edu.cuit.cuitapp.common.CommonResult;
 import cn.edu.cuit.cuitapp.model.CuitPicture;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -34,5 +37,5 @@ public interface CuitPictureService {
      * @param commodityId
      * @return
      */
-    List<CuitPicture> queryByCommodityId(String commodityId);
+    List<CuitPicture> queryByCommodityId(String commodityId, Pageable pageable);
 }

@@ -37,4 +37,10 @@ public class CuitAdmin implements Serializable {
 	@TypeValid
 	@JsonView(CommonJsonView.DetailView.class)
 	private String type;
+
+	private String email;
+
+	private String mobile;
+
+	private String sex;
 }

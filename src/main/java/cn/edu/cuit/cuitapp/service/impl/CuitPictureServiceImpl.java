@@ -8,8 +8,9 @@ import cn.edu.cuit.cuitapp.service.CuitPictureService;
 import cn.edu.cuit.cuitapp.util.ServiceImplUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class CuitPictureServiceImpl implements CuitPictureService {
     }
 
     @Override
-    public List<CuitPicture> queryByCommodityId(String commodityId) {
-        return cuitPictureDao.findAllByCuitCommodityId(commodityId);
+    public List<CuitPicture> queryByCommodityId(String commodityId, Pageable pageable) {
+        return cuitPictureDao.findByCuitCommodityId(commodityId,pageable);
     }
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 
 /**
@@ -23,5 +24,6 @@ public class CuitPicture implements Serializable {
 	private String pictureName;
 	private String type;
 	private String pictureType;
-	private Integer cuitCommodityId;
+	private String cuitCommodityId;
+	private Timestamp insertTime;
 }

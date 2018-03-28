@@ -1,4 +1,6 @@
 package cn.edu.cuit.cuitapp.controller;
+import cn.edu.cuit.cuitapp.dao.CuitCommodityDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 /**
  * 页面控制层
@@ -16,13 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class CuitViewController {
 
+    @Autowired
+    private CuitCommodityDao cuitCommodityDao;
+
     @GetMapping
     public String index(Model model,@AuthenticationPrincipal UserDetails user){
-        if(user instanceof UserDetails){
-            model.addAttribute("username",user.getUsername());
-        }else {
-            model.addAttribute("username","未登录");
-        }
+        model.addAttribute("commoditys",cuitCommodityDao.findAll());
         return "index";
     }
     @GetMapping("/user/view")
@@ -40,6 +43,7 @@ public class CuitViewController {
     }
     @GetMapping("/shop")
     public String shop(Model model){
+        model.addAttribute("commoditys",cuitCommodityDao.findAll());
         return "shop";
     }
 
@@ -52,6 +56,16 @@ public class CuitViewController {
     public String userinfo(){
 
         return "user_info";
+    }
+    @GetMapping(value = "/single-product")
+    public String singleProduct(Model model,Integer id){
+        Optional commodity = cuitCommodityDao.findById(id);
+        model.addAttribute("commodity",commodity.get());
+        return "single-product";
+    }
+    @GetMapping(value = "/car")
+    public String car(){
+        return "car";
     }
 
 }

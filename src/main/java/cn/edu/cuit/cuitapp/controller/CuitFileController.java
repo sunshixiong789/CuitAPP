@@ -2,6 +2,7 @@ package cn.edu.cuit.cuitapp.controller;
 
 import cn.edu.cuit.cuitapp.model.CuitPicture;
 import cn.edu.cuit.cuitapp.service.CuitPictureService;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +34,7 @@ public class CuitFileController {
      */
     @PostMapping(value = "/upload")
     @ResponseBody
-    public void uploadFile(MultipartFile[] file, Integer id, HttpServletRequest request) throws IOException {
+    public void uploadFile(MultipartFile[] file, String id, HttpServletRequest request) throws IOException {
 
         for (int i = 0; i < file.length; i++) {
             if (file[i] != null) {
@@ -72,16 +73,11 @@ public class CuitFileController {
             InputStream inputStream = new FileInputStream(
                     new File("/usr/local/cuit" + File.separator + id + File.separator + fileName));
 
-            OutputStream os = response.getOutputStream();
-            byte[] b = new byte[2048];
-            int length;
-            while ((length = inputStream.read(b)) > 0) {
-                os.write(b, 0, length);
-            }
-            os.close();
+            OutputStream outputStream = response.getOutputStream();
+            IOUtils.copy(inputStream,outputStream);
+            outputStream.flush();
         }catch (Exception e){
             e.printStackTrace();
-        }finally {
         }
     }
 }

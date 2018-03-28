@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 
 /**
@@ -20,6 +21,9 @@ public class CuitBidHistory implements Serializable {
 	@Id
 	@GeneratedValue
    	private Integer id;
-	private String cuitBidHistorycol;
-	private Integer cuitCommodityId;
+	private String price;
+	private String cuitCommodityName;
+	private String cuitUserName;
+	private Timestamp endTime;
+	private String end_price;
 }
